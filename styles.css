@@ -1,0 +1,215 @@
+body {
+    margin: 0;
+    padding: 0;
+    background: #dcd0c2;
+    /* creme pastel */
+    font-family: 'Roboto', sans-serif;
+}
+
+/* Container centralizado e responsivo */
+.cake-container {
+    width: 90%;
+    max-width: 300px;
+    margin: 50px auto;
+    position: relative;
+    text-align: center;
+}
+
+/* Estrutura do bolo */
+.cake {
+    position: relative;
+    width: 200px;
+    height: 100px;
+    margin: 0 auto;
+}
+
+/* Estilo comum para camadas do bolo (inicialmente ocultas) */
+.layer {
+    position: absolute;
+    bottom: 0;
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+/* Cada camada com tamanho e cor distintos */
+.layer1 {
+    width: 180px;
+    height: 20px;
+    background: #f8bbd0;
+    /* rosa claro */
+    left: 10px;
+}
+
+.layer2 {
+    width: 160px;
+    height: 20px;
+    background: #ffcc80;
+    /* laranja claro */
+    left: 20px;
+    bottom: 20px;
+}
+
+.layer3 {
+    width: 140px;
+    height: 20px;
+    background: #d1c4e9;
+    /* lilás claro */
+    left: 30px;
+    bottom: 40px;
+}
+
+/* Velas posicionadas sobre a camada superior (inicialmente ocultas) */
+.candles {
+    position: absolute;
+    bottom: 60px;
+    width: 100%;
+    height: 30px;
+    opacity: 0;
+}
+
+.candle {
+    position: absolute;
+    width: 6px;
+    height: 25px;
+    background: #ffffff;
+    /* vela branca */
+    border-radius: 2px;
+}
+
+.candle:nth-child(1) {
+    left: 60px;
+}
+
+.candle:nth-child(2) {
+    left: 90px;
+}
+
+.candle:nth-child(3) {
+    left: 120px;
+}
+
+/* Chama da vela (círculo laranja) */
+.candle::after {
+    content: "";
+    position: absolute;
+    top: -8px;
+    left: -1px;
+    width: 8px;
+    height: 8px;
+    background: #ff9800;
+    /* laranja */
+    border-radius: 50%;
+    box-shadow: 0 0 5px #ff9800;
+}
+
+/* Título 'Happy Birthday' (inicialmente oculto acima) */
+.title {
+    margin-top: 20px;
+    font-family: 'Pacifico', cursive;
+    font-size: 2em;
+    color: #c2185b;
+    /* rosa forte */
+    opacity: 1; /* Garante que o título permaneça visível */
+    transform: translateY(0); /* Mantém a posição final */
+    transition: color 0.5s ease;
+    /* efeito suave ao alterar cor */
+}
+
+.title.show {
+    animation: fadeInTitle 1s ease-out forwards;
+}
+
+.title.persistent {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+@keyframes fadeInTitle {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* Efeito ao passar o mouse: leve zoom */
+.title:hover {
+    transform: scale(1.1);
+    color: #880e4f;
+}
+
+/* -------------------- Animações -------------------- */
+/* Animação de entrada: slide para cima com fade-in */
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Animação do título: animação tipo 'bounce' descendente */
+@keyframes bounceDown {
+    0% {
+        opacity: 0;
+        transform: translateY(-100px);
+    }
+
+    60% {
+        opacity: 1;
+        transform: translateY(20px);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+
+/* Classes que ativam as animações definidas acima */
+.layer.visible {
+    animation: slideUp 1s ease-out forwards;
+}
+
+.candles.visible {
+    animation: slideUp 1s ease-out forwards;
+}
+
+.title.visible {
+    animation: bounceDown 1s ease-out forwards;
+}
+
+/* Ajustes para telas pequenas */
+@media (max-width: 400px) {
+    .cake-container {
+        max-width: 200px;
+    }
+
+    .title {
+        font-size: 1.5em;
+    }
+}
+
+@media (max-width: 300px) {
+    .cake {
+        width: 150px;
+    }
+
+    .layer1,
+    .layer2,
+    .layer3 {
+        width: 130px;
+    }
+
+    .candles {
+        bottom: 50px;
+    }
+}
+
+/* Código comentado removido conforme solicitado */
+/* setTimeout(() => {
+    title.classList.remove('celebrate');
+}, 1000); */
